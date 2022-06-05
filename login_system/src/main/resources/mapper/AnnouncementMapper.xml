@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bank.mapper.AnnouncementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.bank.pojo.Announcement">
+        <id column="id" property="id" />
+        <result column="adminId" property="adminId" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="releaseDate" property="releaseDate" />
+        <result column="lastUpdateTime" property="lastUpdateTime" />
+        <result column="pdfUrl" property="pdfUrl" />
+        <result column="imageUrl1" property="imageUrl1" />
+        <result column="imageUrl2" property="imageUrl2" />
+        <result column="imageUrl3" property="imageUrl3" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, adminId, title, content, releaseDate, lastUpdateTime, pdfUrl, imageUrl1, imageUrl2, imageUrl3
+    </sql>
+
+</mapper>

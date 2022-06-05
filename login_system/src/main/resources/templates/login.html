@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <style>
+        #table{
+            margin: 20px 0px 0px 20px;
+        }
+        div{
+            padding:50px;
+            display: inline-block;
+            background-color:whitesmoke;
+            position: absolute;
+        }
+        #s1{
+            float: left;
+            margin: 20px 0px 0px 50px;
+        }
+        #s2{
+            float: left;
+            margin: 20px 0px 0px 50px;
+        }
+    </style>
+    <script type="text/javascript">
+        function f1(){
+            var regx = /^[0-9]{0,11}$/;
+            var phonenumber = document.getElementById("phonenumber").value;
+            if(regx.test(phonenumber)){
+                document.getElementById("d1").style.color = "green";
+                document.getElementById("d1").innerHTML="√";
+                return true;
+            }else{
+                document.getElementById("d1").style.color = "red";
+                document.getElementById("d1").innerHTML="×";
+                return false;
+            }
+        }
+        function f2(){
+            var regx = /^[a-zA-Z0-9]{0,25}$/;
+            var password = document.getElementById("password").value;
+            if(regx.test(password)){
+                document.getElementById("d2").style.color = "green";
+                document.getElementById("d2").innerHTML="√";
+                return true;
+            }else{
+                document.getElementById("d2").style.color = "red";
+                document.getElementById("d2").innerHTML="×";
+                return false;
+            }
+        }
+        function subForm(){
+            if(f1()&&f2()){
+                return true;
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form action="/customer/loginresult" method="get" onsubmit="return subForm()">
+        <table id="table">
+            <tr>
+                <td><span>手机号：</span></td>
+                <td><input id="phonenumber" type="text" name="phonenumber" placeholder="请输入11位手机号码" onblur="f1()"><span id="d1"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span>密码：</span>
+                </td>
+                <td><input id="password" type="password" name="password" placeholder="请输入5-12个字母或数字" onblur="f2()"><span id="d2"></span></td>
+            </tr>
+        </table>
+        <input id="s1" type="submit" value="登录">
+    </form>
+    <form action="/customer/enroll" method="get" >
+        <input id="s2" type="submit" value="注册" onclick="enroll()">
+    </form>
+</div>
+</body>
+</html>
+
+
+
+

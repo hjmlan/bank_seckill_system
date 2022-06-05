@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bank.mapper.ActivityMapper">
+
+    <insert id="updateActivity">
+        update activity set remainAmount = remainAmount - 1 where id = #{activityId} AND remainAmount = #{remainAmount} AND remainAmount > 0
+    </insert>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customerNumber, customerName, customerIdType, customerIdNumber, customerPhoneNumber, customerPassword, customerEmail, customerAddress, customerSex, customerOccupation, customerBirthday, customerRegisterDay, customerBankCard, bankCardPassword, balance
+    </sql>
+
+</mapper>

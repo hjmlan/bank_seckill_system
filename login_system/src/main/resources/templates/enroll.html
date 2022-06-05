@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <style>
+        div{
+            /*padding:50px;*/
+            display: inline-block;
+            background-color:whitesmoke;
+            position: absolute;
+        }
+        #s1{
+            float: left;
+            margin: 10px 0px 0px 30px;
+        }
+        #s2{
+            float: left;
+            margin: 10px 0px 0px 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>注册</h1>
+<hr>
+<form action="/customer/enrollresult" method="get" onsubmit="return subForm()">
+    <p>手机号:<input type="text" name="customerPhoneNumber"></p>
+    <p>用户名:<input type="text" name="customerName"></p>
+    <p>身份证号:<input type="text" name="customerIdNumber"></p>
+    <p>邮箱:<input type="text" name="customerEmail"></p>
+    <p>密码:<input type="text" name="customerPassword"></p>
+    <p><input type="hidden" name="date"  id="today"></p>
+
+    <input type="submit" value="确定"  id="s1" >
+    <input type="button" value="返回"  onclick="f1()" id="s2">
+
+</form>
+
+</body>
+</html>

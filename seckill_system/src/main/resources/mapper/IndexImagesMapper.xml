@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bank.mapper.IndexImagesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.bank.pojo.IndexImages">
+        <id column="id" property="id" />
+        <result column="imageUrl" property="imageUrl" />
+        <result column="startDate" property="startDate" />
+        <result column="endDate" property="endDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, imageUrl, startDate, endDate
+    </sql>
+
+</mapper>

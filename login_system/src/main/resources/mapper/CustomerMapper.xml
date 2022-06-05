@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bank.mapper.CustomerMapper">
+    <select id="queryAll" resultType="Customer">
+        select * from customer
+    </select>
+    <select id="selectByPhone" resultType="Customer">
+        select * from customer where customerPhoneNumber =#{customerPhoneNumber}
+
+    </select>
+    <insert id="insertCustomer" parameterType="Customer">
+        insert into customer(customerName,customerIdNumber,customerPhoneNumber,customerPassword,customerEmail) values(#{customerName},#{customerIdNumber},#{customerPhoneNumber},#{customerPassword},#{customerEmail})
+    </insert>
+    <insert id="insertOneByPhone" parameterType="String">
+        insert into customer(customerPhoneNumber) values (#{customerPhoneNumber})
+    </insert>
+    <update id="updateByPhone" parameterType="String">
+        update customer set customerPassword=#{customerPassword} where customerPhoneNumber=#{customerPhoneNumber}
+    </update>
+    <update id="updateRegisterDay">
+        update customer set customerRegisterDay=#{customerRegisterDay} where customerPhoneNumber=#{customerPhoneNumber}
+    </update>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.bank.pojo.Customer">
+        <id column="customerNumber" property="customerNumber" />
+        <result column="customerName" property="customerName" />
+        <result column="customerIdType" property="customerIdType" />
+        <result column="customerIdNumber" property="customerIdNumber" />
+        <result column="customerPhoneNumber" property="customerPhoneNumber" />
+        <result column="customerPassword" property="customerPassword" />
+        <result column="customerEmail" property="customerEmail" />
+        <result column="customerAddress" property="customerAddress" />
+        <result column="customerSex" property="customerSex" />
+        <result column="customerOccupation" property="customerOccupation" />
+        <result column="customerBirthday" property="customerBirthday" />
+        <result column="customerRegisterDay" property="customerRegisterDay" />
+        <result column="customerBankCard" property="customerBankCard" />
+        <result column="bankCardPassword" property="bankCardPassword" />
+        <result column="balance" property="balance" />
+    </resultMap>
+
+    <insert id="insertOrder" parameterType="Order">
+        insert into orders(id,customerId,activityId,productId,productPrice,estimatedEarnings,generateDate,startDate,endDate)
+         values (#{id},#{customerId},#{activityId},#{productId},#{productPrice},#{estimatedEarnings},#{generateDate},#{startDate},#{endDate})
+    </insert>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customerNumber, customerName, customerIdType, customerIdNumber, customerPhoneNumber, customerPassword, customerEmail, customerAddress, customerSex, customerOccupation, customerBirthday, customerRegisterDay, customerBankCard, bankCardPassword, balance
+    </sql>
+
+</mapper>

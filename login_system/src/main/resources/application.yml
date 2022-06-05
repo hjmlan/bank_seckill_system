@@ -1,0 +1,99 @@
+spring:
+  redis:
+    #服务器地址
+    host: 127.0.0.1
+    #端口
+    port: 6379
+    #数据库
+    database: 0
+    #超时时间
+    timeout: 10000ms
+    lettuce:
+      pool:
+        #最大连接数，默认8
+        max-active: 8
+        #最大连接阻塞等待时间，默认-1
+        max-wait: 10000ms
+        #最大空闲连接
+        max-idle: 200
+        #最小空闲连接，默认0
+        min-idle: 5
+  #RabbitMQ
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    virtual-host: /
+    port: 5672
+    listener:
+      simple:
+        #消费者最小数量
+        concurrency: 10
+        #消费者最大数量
+        max-concurrency: 10
+        #限制消费者每次只处理一条消息，处理完再继续下一条消息
+        prefetch: 1
+        #启动时是否默认启动容器，默认true
+        auto-startup: true
+        #被拒绝时是否重新进入队列
+        default-requeue-rejected: true
+    template:
+      retry:
+        #发布重试，默认false
+        enabled: true
+        #重试时间，默认1000ms
+        initial-interval: 1000ms
+        #重试最大次数，默认3次
+        max-attempts: 3
+        #重试最大间隔时间，默认10000ms
+        max-interval: 10000ms
+        #重试的间隔成熟，比如配2.0，第一次10s，第二次20s，第三次40s
+        multiplier: 1
+
+
+  #数据库配置
+  datasource:
+    username: "root"
+    password: "123456"
+    url: jdbc:mysql://localhost:3306/bailan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      #连接池名
+      pool-name: HikariCP
+      #最小空闲连接数
+      minimum-idle: 5
+      #空闲连接存货最大时间，默认600000(10min)
+      idle-timeout: 1800000
+      #最大连接数，默认10
+      maximum-pool-size: 10
+      #从连接池返回的连接自动提交
+      auto-commit: true
+      #连接最大存活时间，0表示永久存货，默认1800000(30min)
+      max-lifetime: 1800000
+      #连接超时时间，默认30000(30s)
+      connection-timeout: 30000
+      #测试链接是否可用的查询语句
+      connection-test-query: SELECT 1
+
+#Mybatis-plus配置
+mybatis-plus:
+  #配置Mapper.xml映射文件
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  #配置Mybatis数据返回类型别名(默认别名是类名)
+  type-aliases-package: com.example.bank.pojo
+
+#Mybatis sql打印(方法接口所在的包，不是Mapper.xml所在的包)
+logging:
+  level:
+    com.example.bank.mapper: debug
+
+server:
+  port: ${PORT:8888}
+
+#thymeleaf:
+#  prefix: classpath:/templates/  #prefix：指定模板所在的目录
+#  check-template-location: true  #check-tempate-location: 检查模板路径是否存在
+#  cache: false  #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+#  suffix:  .html
+#  mode: HTML5
